@@ -306,6 +306,10 @@ if !exists("g:EasyGrepInvertWholeWord")
     let g:EasyGrepInvertWholeWord=0
 endif
 
+if !exists("g:EasyGrepCustomGrepCommandOptions")
+    let g:EasyGrepCustomGrepCommandOptions=""
+endif
+
 " GetAssociationFileList {{{
 function! s:GetFileAssociationList()
     if exists("g:EasyGrepFileAssociations")
@@ -1948,7 +1952,7 @@ function! s:DoGrep(word, add, whole, count, escapeArgs)
     " TODO: enumerate the error conditions of this call
     let failed = 0
     try
-        let grepCommand = a:count.win.com.a:add." ".opts." ".s1.word.s2." ".s:FilesToGrep
+        let grepCommand = a:count.win.com.a:add." ".g:EasyGrepCustomGrepCommandOptions. " " .opts." ".s1.word.s2." ".s:FilesToGrep
         "echo grepCommand
         silent execute grepCommand
     catch
