@@ -1467,7 +1467,7 @@ function! s:CompareCurrentFileCurrentDirectory()
             return 0
         endif
         let fileDir = fnamemodify(currFile, ":p:h")
-        if !empty(fileDir) && !g:EasyGrepSearchCurrentBufferDir
+        if !empty(fileDir) && !g:EasyGrepSearchCurrentBufferDir && !g:EasyGrepRecursive
             let cwd = getcwd()
             if fileDir != cwd
                 call s:Warning("current file not searched, its directory [".fileDir."] doesn't match the working directory [".cwd."]")
