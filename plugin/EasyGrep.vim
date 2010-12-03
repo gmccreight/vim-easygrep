@@ -2112,7 +2112,7 @@ function! s:DoGrep(word, add, whole, count, escapeArgs)
     endif
     if commandIsGrep
         " We would like to use --include pattern for a grep command
-        let opts .= " " . join(map(split(filesToGrep, ' '), '"--include=" .v:val'), ' ')
+        let opts .= " " . join(map(split(filesToGrep, ' '), '"--include=\"" .v:val."\""'), ' ')
     endif
 
     if s:IsModeBuffers() && empty(filesToGrep)
