@@ -2112,7 +2112,7 @@ function! s:DoGrep(word, add, whole, count, escapeArgs)
     endif
     if commandIsGrep
         " We would like to use --include pattern for a grep command
-        let opts .= " " . join(map(split(filesToGrep, ' '), '"--include=\"" .v:val."\""'), ' ')
+        "let opts .= " " . join(map(split(filesToGrep, ' '), '"--include=\"" .v:val."\""'), ' ')
     endif
 
     if s:IsModeBuffers() && empty(filesToGrep)
@@ -2133,6 +2133,7 @@ function! s:DoGrep(word, add, whole, count, escapeArgs)
     let failed = 0
     try
         let grepCommand = a:count.win.com.a:add." ".g:EasyGrepCustomGrepCommandOptions." ".opts." ".s1.word.s2." ".filesToGrep
+        echo grepCommand
         silent execute grepCommand
     catch
         if v:exception != 'E480'
